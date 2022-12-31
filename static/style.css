@@ -16,6 +16,8 @@ body {
 	position: relative;
 	vertical-align: top;
 	margin: 10px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	font-family: 'helvetica', san-serif;
 	min-height: 25vh;
 	background: #262a2b;

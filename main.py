@@ -6,14 +6,13 @@ from ocha import Ocha
 ocha = Ocha()
 amerigeoos = Amerigeoos()
 
-ocha_data = zip(ocha.titles, ocha.descriptions, ocha.details)
-amerigeoos_data = zip(amerigeoos.titles, amerigeoos.descriptions, amerigeoos.details)
 
 app = Flask(__name__)
 
 @app.route('/',  methods =["GET", "POST"])
 def result():
-
+    ocha_data = zip(ocha.titles, ocha.descriptions, ocha.details)
+    amerigeoos_data = zip(amerigeoos.titles, amerigeoos.descriptions, amerigeoos.details)
     # if request.method == "POST":
     #     # getting input_key in HTML form
     #     input_key = request.form.get("search")
