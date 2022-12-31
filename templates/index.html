@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Transfrom Skew Property and nice List styles</title>
+  <link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<ul class="tilesWrap">
+	{% for title, description, link in ocha %}
+		<li>
+			<h2>HD</h2>
+			<h3>{{ title }}</h3>
+			<p>
+				{{ description }}.
+			</p>
+			<button><a href= {{ link }}  target="_blank">See More</a> </button>
+		</li>
+	{% endfor %}
+	{% for title, description, link in amerigeoos %}
+		<li>
+			<h2>HD</h2>
+			<h3>{{ title }}</h3>
+			<p>
+				{{ description }}.
+			</p>
+			<button><a href= {{ link }}  target="_blank">See More</a> </button>
+		</li>
+	{% endfor %}
+</ul>
+<!-- partial -->
+  
+</body>
+</html>
