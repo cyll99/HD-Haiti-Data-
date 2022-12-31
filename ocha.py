@@ -26,7 +26,6 @@ class Ocha:
             self.titles.append(container.a.text)
             link = "https://data.humdata.org"+container.a["href"]
             self.details.append(link)
-            print(link)            
             info = container.findAll("div", {"class" : "dataset-dates"})
             self.descriptions.append(info[0].text.strip().replace('\n', '').replace("\t", ""))
         
