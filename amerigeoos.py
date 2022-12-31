@@ -12,10 +12,9 @@ class Amerigeoos:
 
         for i in range(1, 5):
 
-            page_url = page_url + str(i)   
             # opens the connection and downloads html page from url
             try:
-                uClient = requests.get(page_url).text
+                uClient = requests.get(page_url + str(i)).text
             except:
                 print("Connection failed")
 

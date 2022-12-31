@@ -11,10 +11,11 @@ class Ocha:
 
 
         for i in range(1, 5):
-            page_url = page_url + str(i)
+            page_url_complete = page_url + str(i)   
+
             # opens the connection and downloads html page from url
             try:
-                uClient = requests.get(page_url).text
+                uClient = requests.get(page_url_complete).text
             except:
                 print("Connection failed")
 
