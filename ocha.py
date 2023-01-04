@@ -4,9 +4,9 @@ import requests
 
 
 class Ocha:
-    def __init__(self):
-        
-        page_url = "https://data.humdata.org/dataset?q=haiti&page="
+    def __init__(self, link):
+        self.link = link
+        page_url = self.link + "&page="
         self.titles, self.descriptions, self.details = list(), list(), list()
 
 

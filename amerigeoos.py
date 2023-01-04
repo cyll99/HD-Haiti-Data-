@@ -3,15 +3,15 @@ from urllib.request import urlopen as uReq  # Web client
 import requests
 
 class Amerigeoos:
-    def __init__(self):
+    def __init__(self, link):
         
-        
+        self.link = link
 
         self.titles, self.descriptions, self.details = list(), list(), list()
 
 
         for i in range(1, 5):
-            page_url = "https://data.amerigeoss.org/gl/group/amerigeoss?q=haiti&page=" + str(i) 
+            page_url = self.link + "&page=" + str(i) 
             
             # opens the connection and downloads html page from url
             try:
