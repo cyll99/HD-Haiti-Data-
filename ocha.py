@@ -2,14 +2,16 @@ from bs4 import BeautifulSoup as soup  # HTML data structure
 from urllib.request import urlopen as uReq  # Web client
 import requests
 
-
+"""
+This class processes data from Ocha website.
+"""
 class Ocha:
     def __init__(self, link):
         self.link = link
         page_url = self.link + "&page="
         self.titles, self.descriptions, self.details = list(), list(), list()
 
-
+        # Scraping five pages
         for i in range(1, 5):
             page_url_complete = page_url + str(i)   
 
@@ -24,9 +26,10 @@ class Ocha:
             page_soup = soup(uClient, "html.parser")
 
 
-            # finds each product from the store page
+            # finds each dataset from the store page
             containers = page_soup.findAll("li", {"class": "list-items dataset-item"})
-
+            
+            #Saves details about each dataset to display them
             for container in containers:
                 self.titles.append(container.a.text)
                 link = "https://data.humdata.org"+container.a["href"]

@@ -2,6 +2,10 @@ from bs4 import BeautifulSoup as soup  # HTML data structure
 from urllib.request import urlopen as uReq  # Web client
 import requests
 
+
+"""
+This class processes data from Amerigeoos website.
+"""
 class Amerigeoos:
     def __init__(self, link):
         
@@ -9,7 +13,7 @@ class Amerigeoos:
 
         self.titles, self.descriptions, self.details = list(), list(), list()
 
-
+        # Scraping five pages
         for i in range(1, 5):
             page_url = self.link + "&page=" + str(i) 
             
@@ -24,9 +28,9 @@ class Amerigeoos:
             page_soup = soup(uClient, "html.parser")
 
 
-            # finds each product from the store page
+            # finds each dataset from the store page
             containers = page_soup.findAll("li", {"class": "dataset-item"})
-
+            #Saves details about each dataset to display them
             for container in containers:
                 try:
                     link = "https://data.amerigeoss.org"+container.a["href"]
