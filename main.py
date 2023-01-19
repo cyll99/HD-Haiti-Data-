@@ -12,7 +12,7 @@ amerigeoos_link = "https://data.amerigeoss.org/gl/group/amerigeoss?q=haiti"
 
 app = Flask(__name__)
 
-@app.route('/',  methods =["GET", "POST"])
+@app.route('/datasets',  methods =["GET", "POST"])
 def result():
     ocha = Ocha(ocha_link)
     amerigeoos = Amerigeoos(amerigeoos_link)
@@ -35,6 +35,14 @@ def result():
 
         return render_template("index.html", ocha = ocha_data, amerigeoos = amerigeoos_data)
     return render_template("index.html", ocha = ocha_data, amerigeoos = amerigeoos_data)
+
+@app.route('/news',  methods =["GET", "POST"])
+def news():
+    return render_template("news.html")
+
+@app.route('/',  methods =["GET", "POST"])
+def home():
+    return render_template("home.html")
 
 if __name__ == '__main__':
     app.run(debug = True)

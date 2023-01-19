@@ -11,12 +11,13 @@
 <body>
 	<h1>Take a quick glance at the price of the item you want to buy!</h1>
 	<div class="topnav">
-	   <a class="active" href="{{ url_for("result")}}">Haiti Data</a>
+	   <a class="active" href="{{ url_for("home")}}">Home</a>
 	   <div class="search-container">
 		  <form action="{{ url_for("result")}}" method="post">
 		  <input type="text" placeholder="Search.." name="search">
 		  <button type="submit" onclick="$('#loading').show();">Submit</button>
 		  </form>
+		  <a class="active" href="{{ url_for("news")}}">Haiti News</a>
 	   </div>
 	   <div id="loading" style="display:none;">Loading...</div>
 <!-- partial:index.partial.html -->
