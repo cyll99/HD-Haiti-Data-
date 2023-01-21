@@ -6,3 +6,15 @@
     <li>1 PES = {{ rate.PES }} GHT</li>
     <li>1 CAN = {{ rate.CAN }} GHT</li>
 </ul>
+
+<table>
+    {% for value in result %}
+
+ 
+             <th> <img src= {{ value["image"] }}> </th>
+             <td> <a href= {{ value["product_link"] }}  target="_blank">{{ value["product_name"] }}  </a> </td>
+             <td> {{ value["price"] }} </td>
+             <td> {{ value["web_site"] }}</td>
+          </tr>
+       {% endfor %}
+</table>

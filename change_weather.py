@@ -9,7 +9,7 @@ print(x.year)
 print(x.strftime("%A, %B %d %Y"))
 
 class Exchange_rate():
-     def __init__(self):
+    def __init__(self):
 
         HEADERS = ({'User-Agent':
             'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
@@ -29,7 +29,7 @@ class Exchange_rate():
 
         # finds currencies from home page
         containers = soup.find("div", {"class": "quick_access1"})
-        self.USD = containers.h4.text.strip()
+        self.USD = containers.h4.text.strip() #US dollar
 
         other_currencies = []
         containers = containers.findAll("div", {"class": "col-sm-4"})
@@ -40,13 +40,6 @@ class Exchange_rate():
             except:
                 print()
 
-        self.EUR = other_currencies[0]
-        self.PES = other_currencies[1]
-        self.CAN = other_currencies[2]
-
-
-        # print(self.USD)
-        # print(self.EUR)
-        # print(self.PES)
-        # print(self.CAN)
-
+        self.EUR = other_currencies[0] # Euro currency
+        self.PES = other_currencies[1]  #Dominican Peso
+        self.CAN = other_currencies[2]  # Canadian dollar
