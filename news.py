@@ -2,6 +2,12 @@ from bs4 import BeautifulSoup  # HTML data structure
 from urllib.request import urlopen as uReq  # Web client
 import requests
 
+class Article():
+    def __init__(self, image, title, overview) :
+        self.image = image
+        self.title = title
+        self.overview = overview
+
 
 class HaitiLibre():
     def __init__(self):
@@ -24,6 +30,15 @@ class HaitiLibre():
 
         # finds news from home page
         containers = soup.findAll("table", {"width": "100%"})
-        print(containers)
+        self.articles = []
+        for container in containers:
+            try:
+                image = "https://www.haitilibre.com" + container.find("img")["src"].strip()
+                title = container.find("img")["alt"]
+                overview = container.findAll("td", {"class": "text"})[1].text.strip()
 
-h = HaitiLibre()
+                article = Article(image, title, overview)
+                self.articles.append(article)
+            except:
+                continue
+

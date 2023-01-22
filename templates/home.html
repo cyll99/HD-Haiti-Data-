@@ -8,13 +8,12 @@
 </ul>
 
 <table>
-    {% for value in result %}
+    {% for article in articles %}
 
  
-             <th> <img src= {{ value["image"] }}> </th>
-             <td> <a href= {{ value["product_link"] }}  target="_blank">{{ value["product_name"] }}  </a> </td>
-             <td> {{ value["price"] }} </td>
-             <td> {{ value["web_site"] }}</td>
+             <th> <img src= {{ article.image }}> </th>
+             <td> {{ article.title }} </td>
+             <td> {{ article.overview }}</td>
           </tr>
        {% endfor %}
 </table>
