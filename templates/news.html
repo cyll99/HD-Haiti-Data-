@@ -1,0 +1,14 @@
+<a class="active" href="{{ url_for("result")}}">Datasets</a>
+
+<a class="active" href="{{ url_for("home")}}">Home</a>
+
+<table>
+    {% for article in articles %}
+
+ 
+             <th> <img src= {{ article.image }}> </th>
+             <td><a href= {{ article.link }}  target="_blank"> {{ article.title }} </a></td>
+             <td> {{ article.overview }}</td>
+          </tr>
+       {% endfor %}
+</table>

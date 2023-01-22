@@ -40,7 +40,9 @@ def result():
 
 @app.route('/news',  methods =["GET", "POST"])
 def news():
-    return render_template("news.html")
+    front_news = HaitiLibre()
+
+    return render_template("news.html", articles = front_news.articles)
 
 @app.route('/',  methods =["GET", "POST"])
 def home():
