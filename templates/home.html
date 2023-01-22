@@ -12,7 +12,7 @@
 
  
              <th> <img src= {{ article.image }}> </th>
-             <td> {{ article.title }} </td>
+             <td><a href= {{ article.link }}  target="_blank"> {{ article.title }} </a></td>
              <td> {{ article.overview }}</td>
           </tr>
        {% endfor %}

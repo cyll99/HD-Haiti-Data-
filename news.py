@@ -3,10 +3,11 @@ from urllib.request import urlopen as uReq  # Web client
 import requests
 
 class Article():
-    def __init__(self, image, title, overview) :
+    def __init__(self, image, title, overview, link) :
         self.image = image
         self.title = title
         self.overview = overview
+        self.link = link
 
 
 class HaitiLibre():
@@ -36,9 +37,11 @@ class HaitiLibre():
                 image = "https://www.haitilibre.com" + container.find("img")["src"].strip()
                 title = container.find("img")["alt"]
                 overview = container.findAll("td", {"class": "text"})[1].text.strip()
+                link = "https://www.haitilibre.com" + container.findAll("td", {"class": "text"})[2].a["href"]
 
-                article = Article(image, title, overview)
+                article = Article(image, title, overview, link)
                 self.articles.append(article)
             except:
                 continue
 
+h = HaitiLibre()
