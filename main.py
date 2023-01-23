@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from amerigeoos import Amerigeoos
 from change_weather import Exchange_rate
-from news import HaitiLibre
+from news import HaitiLibre, LeNouvelliste
 from ocha import Ocha
 
 #links for each website
@@ -48,8 +48,9 @@ def news():
 def home():
     exchange_rate = Exchange_rate()
     front_news = HaitiLibre()
+    leNouvelliste = LeNouvelliste()
     
-    return render_template("home.html",  rate = exchange_rate, articles = front_news.articles)
+    return render_template("home.html",  rate = exchange_rate, articles = front_news.articles + leNouvelliste.articles)
 
 if __name__ == '__main__':
     app.run(debug = True)
