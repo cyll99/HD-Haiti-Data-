@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from amerigeoos import Amerigeoos
 from change_weather import Exchange_rate
-from news import HaitiLibre, LeNouvelliste
+from news import *
 from ocha import Ocha
 
 #links for each website
@@ -41,16 +41,18 @@ def result():
 @app.route('/news',  methods =["GET", "POST"])
 def news():
     front_news = HaitiLibre()
+    nouvelliste = LeNouvelliste()
+    loop = HaitiLoop()
 
-    return render_template("news.html", articles = front_news.articles)
+    return render_template("news.html", articles = (front_news.articles + loop.articles + nouvelliste.articles))
 
 @app.route('/',  methods =["GET", "POST"])
 def home():
     exchange_rate = Exchange_rate()
     front_news = HaitiLibre()
-    leNouvelliste = LeNouvelliste()
+
     
-    return render_template("home.html",  rate = exchange_rate, articles = front_news.articles + leNouvelliste.articles)
+    return render_template("home.html",  rate = exchange_rate, articles = front_news.articles)
 
 if __name__ == '__main__':
     app.run(debug = True)
