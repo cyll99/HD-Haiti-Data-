@@ -3,10 +3,10 @@ from bs4 import BeautifulSoup  # HTML data structure
 from urllib.request import urlopen as uReq  # Web client
 import requests
 
+
 x = datetime.datetime.now()
 
-print(x.year)
-print(x.strftime("%A, %B %d %Y"))
+date = x.strftime("%A, %B %d %Y")
 
 class Exchange_rate():
     def __init__(self):
@@ -43,3 +43,47 @@ class Exchange_rate():
         self.EUR = other_currencies[0] # Euro currency
         self.PES = other_currencies[1]  #Dominican Peso
         self.CAN = other_currencies[2]  # Canadian dollar
+
+
+class Weather():
+    def __init__(self, city = "Jacmel"):
+
+        # importing requests and json
+        CITY = city
+        API_KEY = "26548f054308ad111b626fa43cc6399f"
+        # base URL
+        BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
+        # City Name CITY = "Hyderabad"
+        # API key API_KEY = "Your API Key"
+        # upadting the URL
+        URL = BASE_URL + "q=" + CITY + "&appid=" + API_KEY
+        # HTTP request
+        response = requests.get(URL)
+        # checking the status code of the request
+        if response.status_code == 200:
+        # getting data in the json format
+            data = response.json()
+            print(data)
+            lon = data["coord"]["lon"]
+            lat = data["coord"]["lat"]
+
+            self.date = date
+            try:
+                self.city = data["name"]+","+data["sys"]["country"]
+                self.coord = f"Lon : {lon},  Lat : {lat}"
+                self.weather = data["weather"][0]["description"]
+                self.temp_F = data["main"]["temp"]
+                self.temp_C = (self.temp_F - 32) * 5 / 9
+                self.pressure = data["main"]["pressure"]
+                self.humidity = data["main"]["humidity"]
+                self.sea_level = data["main"]["sea_level"]
+                self.grnd_level = data["main"]["grnd_level"]
+                self.visibility = (data["visibility"]) / 1000
+                self.wind_speed = data["wind"]["speed"]
+            except:
+                return
+
+
+        else:
+            # showing the error message
+            print("Error in the HTTP request")

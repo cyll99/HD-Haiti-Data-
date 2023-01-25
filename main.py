@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from amerigeoos import Amerigeoos
-from change_weather import Exchange_rate
+from change_weather import Exchange_rate, Weather
 from news import *
 from ocha import Ocha
 
@@ -50,9 +50,10 @@ def news():
 def home():
     exchange_rate = Exchange_rate()
     front_news = HaitiLibre()
+    weather = Weather()
 
     
-    return render_template("home.html",  rate = exchange_rate, articles = front_news.articles)
+    return render_template("home.html",  rate = exchange_rate, articles = front_news.articles, weather = weather)
 
 if __name__ == '__main__':
     app.run(debug = True)

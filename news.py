@@ -24,6 +24,7 @@ class HaitiLibre():
             webpage = requests.get(page_url, headers=HEADERS)
         except:
             print("Connection failed")
+            return 
 
         # parses html into a soup data structure to traverse html
         # as if it were a json data type.
@@ -60,13 +61,15 @@ class LeNouvelliste():
             webpage = requests.get(page_url, headers=HEADERS)
         except:
             print("Connection failed")
+            return 
 
         # parses html into a soup data structure to traverse html
         # as if it were a json data type.
-        soup = BeautifulSoup(webpage.content, "lxml")
+        soup = BeautifulSoup(webpage.content, "html.parser")
 
                 # finds news from home page
         containers = soup.findAll("div", {"class": "lnv-featured-article-sm"})
+        print(containers)
         self.articles = []
         for container in containers:
             try:
@@ -101,6 +104,7 @@ class HaitiLoop():
             webpage = requests.get(page_url, headers=HEADERS)
         except:
             print("Connection failed")
+            return
 
         # parses html into a soup data structure to traverse html
         # as if it were a json data type.
@@ -122,3 +126,4 @@ class HaitiLoop():
             except:
                 continue
 
+h = LeNouvelliste()
