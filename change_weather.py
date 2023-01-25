@@ -56,7 +56,7 @@ class Weather():
         # City Name CITY = "Hyderabad"
         # API key API_KEY = "Your API Key"
         # upadting the URL
-        URL = BASE_URL + "q=" + CITY + "&appid=" + API_KEY
+        URL = BASE_URL + "q=" + CITY + "&appid=" + API_KEY +  "&units=" + "metric"
         # HTTP request
         response = requests.get(URL)
         # checking the status code of the request
@@ -71,14 +71,16 @@ class Weather():
                 self.city = data["name"]+","+data["sys"]["country"]
                 self.coord = f"Lon : {lon},  Lat : {lat}"
                 self.weather = data["weather"][0]["description"]
-                self.temp_F = data["main"]["temp"]
-                self.temp_C = (self.temp_F - 32) * 5 / 9
+                self.temp_C= data["main"]["temp"]
                 self.pressure = data["main"]["pressure"]
                 self.humidity = data["main"]["humidity"]
                 self.sea_level = data["main"]["sea_level"]
                 self.grnd_level = data["main"]["grnd_level"]
                 self.visibility = (data["visibility"]) / 1000
                 self.wind_speed = data["wind"]["speed"]
+                self.icon = "http://openweathermap.org/img/wn/" + data["weather"][0]["icon"] + "@2x.png"
+     
+
             except:
                 return
 
