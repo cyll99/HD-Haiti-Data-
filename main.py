@@ -46,6 +46,19 @@ def news():
 
     return render_template("news.html", articles = (front_news.articles + loop.articles + nouvelliste.articles))
 
+@app.route('/weather',  methods =["GET", "POST"])
+def weather_info():
+    weather = Weather()
+    if request.method == "POST":
+        # getting input_key in HTML form
+        city = request.form.get("search")
+        weather = Weather(city)
+
+        return render_template("weather.html", weather = weather)
+    return render_template("weather.html", weather = weather)
+
+
+
 @app.route('/',  methods =["GET", "POST"])
 def home():
     exchange_rate = Exchange_rate()

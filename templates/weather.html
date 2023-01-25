@@ -1,28 +1,16 @@
 <a class="active" href="{{ url_for("result")}}">Datasets</a>
 
 <a class="active" href="{{ url_for("home")}}">Home</a>
-
 <a class="active" href="{{ url_for("news")}}">News</a>
 
-<a class="active" href="{{ url_for("weather_info")}}">Weather</a>
 
-<ul>
-    <li>1 USD = {{ rate.USD }} GHT</li>
-    <li>1 EUR = {{ rate.EUR }} GHT</li>
-    <li>1 PES = {{ rate.PES }} GHT</li>
-    <li>1 CAN = {{ rate.CAN }} GHT</li>
-</ul>
-
-<table>
-    {% for article in articles %}
-
- 
-             <th> <img src= {{ article.image }}> </th>
-             <td><a href= {{ article.link }}  target="_blank"> {{ article.title }} </a></td>
-             <td> {{ article.overview }}</td>
-          </tr>
-       {% endfor %}
-</table>
+<div class="search-container">
+    <form action="{{ url_for("weather_info")}}" method="post">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit" onclick="$('#loading').show();">Submit</button>
+    </form>
+</div>
+<div id="loading" style="display:none;">Loading...</div>
 
 <ul>
     <li>City = {{ weather.city }}</li>

@@ -46,7 +46,7 @@ class Exchange_rate():
 
 
 class Weather():
-    def __init__(self, city = "Jacmel"):
+    def __init__(self, city = "Port-au-Prince"):
 
         # importing requests and json
         CITY = city
@@ -63,7 +63,6 @@ class Weather():
         if response.status_code == 200:
         # getting data in the json format
             data = response.json()
-            print(data)
             lon = data["coord"]["lon"]
             lat = data["coord"]["lat"]
 
