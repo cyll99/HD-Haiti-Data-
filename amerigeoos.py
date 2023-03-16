@@ -14,7 +14,7 @@ class Amerigeoos:
         self.titles, self.descriptions, self.details = list(), list(), list()
 
         # Scraping five pages
-        for i in range(1, 5):
+        for i in range(1, 3):
             page_url = self.link + "&page=" + str(i) 
             
             # opens the connection and downloads html page from url

@@ -69,7 +69,6 @@ class LeNouvelliste():
 
                 # finds news from home page
         containers = soup.findAll("div", {"class": "lnv-featured-article-sm"})
-        print(containers)
         self.articles = []
         for container in containers:
             try:
@@ -78,10 +77,10 @@ class LeNouvelliste():
                 overview = container.find("p").strip()
                 link = "https://www.lenouvelliste.com" + container.find("a")["href"]
 
-                print(f"image = {image}")
-                print(f"title = {title}")
-                print(f"overview = {overview}")
-                print(f"link = {link}")
+                # print(f"image = {image}")
+                # print(f"title = {title}")
+                # print(f"overview = {overview}")
+                # print(f"link = {link}")
 
 
                 article = Article(image, title, overview, link)
