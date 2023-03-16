@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request
-from amerigeoos import Amerigeoos
 from change_weather import Exchange_rate, Weather
 from news import *
-from ocha import Ocha
+from dataset import Ocha, Amerigeoos
 
 #links for each website
 ocha_link = "https://data.humdata.org/dataset?q=haiti"
 amerigeoos_link = "https://data.amerigeoss.org/gl/group/amerigeoss?q=haiti"
 
 
-
+ocha = Ocha(ocha_link)
+amerigeoos = Amerigeoos(amerigeoos_link)
 
 
 app = Flask(__name__)
@@ -19,12 +19,7 @@ def result():
     """
     returns a list of datasets about Haiti
     """
-    ocha = Ocha(ocha_link)
-    amerigeoos = Amerigeoos(amerigeoos_link)
-
-    #Gathering data
-    ocha_data = zip(ocha.titles, ocha.descriptions, ocha.details)
-    amerigeoos_data = zip(amerigeoos.titles, amerigeoos.descriptions, amerigeoos.details)
+  
 
 
     if request.method == "POST":
@@ -34,12 +29,9 @@ def result():
         ocha = Ocha(ocha_link + f"+{input_key}")
         amerigeoos = Amerigeoos(amerigeoos_link + f"+{input_key}")
 
-        ocha_data = zip(ocha.titles, ocha.descriptions, ocha.details)
-        amerigeoos_data = zip(amerigeoos.titles, amerigeoos.descriptions, amerigeoos.details)
+        return render_template("index.html", ocha = ocha.datasets, amerigeoos = amerigeoos.datasets)
+    return render_template("index.html", ocha = ocha.datasets, amerigeoos = amerigeoos.datasets)
 
-
-        return render_template("index.html", ocha = ocha_data, amerigeoos = amerigeoos_data)
-    return render_template("index.html", ocha = ocha_data, amerigeoos = amerigeoos_data)
 
 @app.route('/news',  methods =["GET", "POST"])
 def news():
@@ -73,12 +65,13 @@ def home():
     """
     Returns the rate exchange, some articles and datasets for the home page
     """
+
     exchange_rate = Exchange_rate()
     front_news = HaitiLibre()
     weather = Weather()
 
     
-    return render_template("home.html",  rate = exchange_rate, articles = front_news.articles, weather = weather)
+    return render_template("home.html", ameri = amerigeoos.datasets, rate = exchange_rate, articles = front_news.articles, weather = weather)
 
 if __name__ == '__main__':
     app.run(debug = True)
