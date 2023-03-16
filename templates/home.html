@@ -14,12 +14,12 @@
 </ul>
 
 <table>
-    {% for article in articles %}
+    {% for i in range (3) %}
 
  
-             <th> <img src= {{ article.image }}> </th>
-             <td><a href= {{ article.link }}  target="_blank"> {{ article.title }} </a></td>
-             <td> {{ article.overview }}</td>
+             <th> <img src= {{ articles[i].image }}> </th>
+             <td><a href= {{ articles[i].link }}  target="_blank"> {{ articles[i].title }} </a></td>
+             <td> {{ articles[i].overview }}</td>
           </tr>
        {% endfor %}
 </table>

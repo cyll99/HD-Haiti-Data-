@@ -16,6 +16,9 @@ app = Flask(__name__)
 
 @app.route('/datasets',  methods =["GET", "POST"])
 def result():
+    """
+    returns a list of datasets about Haiti
+    """
     ocha = Ocha(ocha_link)
     amerigeoos = Amerigeoos(amerigeoos_link)
 
@@ -40,6 +43,9 @@ def result():
 
 @app.route('/news',  methods =["GET", "POST"])
 def news():
+    """
+    return a list of articles from three different web sites
+    """
     front_news = HaitiLibre()
     nouvelliste = LeNouvelliste()
     loop = HaitiLoop()
@@ -48,6 +54,9 @@ def news():
 
 @app.route('/weather',  methods =["GET", "POST"])
 def weather_info():
+    """
+    returns the weather of a specific city (Port-au-Prince by default)
+    """
     weather = Weather()
     if request.method == "POST":
         # getting input_key in HTML form
@@ -61,6 +70,9 @@ def weather_info():
 
 @app.route('/',  methods =["GET", "POST"])
 def home():
+    """
+    Returns the rate exchange, some articles and datasets for the home page
+    """
     exchange_rate = Exchange_rate()
     front_news = HaitiLibre()
     weather = Weather()

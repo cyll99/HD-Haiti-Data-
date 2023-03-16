@@ -125,4 +125,4 @@ class HaitiLoop():
             except:
                 continue
 
-h = LeNouvelliste()
+# h = LeNouvelliste()
