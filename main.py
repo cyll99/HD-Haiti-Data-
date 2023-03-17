@@ -23,7 +23,7 @@ def result():
 
     ocha = Ocha(ocha_link)
     amerigeoos = Amerigeoos(amerigeoos_link)
-    
+
     if request.method == "POST":
         # getting input_key in HTML form
         input_key = request.form.get("search")
@@ -42,9 +42,9 @@ def news():
     """
     front_news = HaitiLibre()
     nouvelliste = LeNouvelliste()
-    loop = HaitiLoop()
+    # loop = HaitiLoop()
 
-    return render_template("news.html", articles = (front_news.articles + loop.articles + nouvelliste.articles))
+    return render_template("news.html", articles = (front_news.articles + nouvelliste.articles))
 
 @app.route('/weather',  methods =["GET", "POST"])
 def weather_info():

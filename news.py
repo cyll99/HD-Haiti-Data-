@@ -3,11 +3,12 @@ from urllib.request import urlopen as uReq  # Web client
 import requests
 
 class Article():
-    def __init__(self, image, title, overview, link) :
+    def __init__(self, image, title, overview, link, date) :
         self.image = image
         self.title = title
         self.overview = overview
         self.link = link
+        self.date = date
 
 
 class HaitiLibre():
@@ -39,8 +40,8 @@ class HaitiLibre():
                 title = container.find("img")["alt"]
                 overview = container.findAll("td", {"class": "text"})[1].text.strip()
                 link = "https://www.haitilibre.com" + container.findAll("td", {"class": "text"})[2].a["href"]
-
-                article = Article(image, title, overview, link)
+                date = container.findAll("td", {"class": "date"})[1].text.strip()
+                article = Article(image, title, overview, link, date)
                 self.articles.append(article)
             except:
                 continue
@@ -66,6 +67,7 @@ class LeNouvelliste():
         # parses html into a soup data structure to traverse html
         # as if it were a json data type.
         soup = BeautifulSoup(webpage.content, "html.parser")
+        print(soup)
 
                 # finds news from home page
         containers = soup.findAll("div", {"class": "lnv-featured-article-sm"})
@@ -74,7 +76,8 @@ class LeNouvelliste():
             try:
                 image = container.find("img")["src"].strip()
                 title = container.find("h1").strip()
-                overview = container.find("p").strip()
+                overview = container.findAll("div", {"class": "text-xs text-gray-500 mt-2"})[1].text.strip()
+                date = container.findAll("div", {"class": "text-gray-500 text-[16px] mt-4"})[1].text.strip()
                 link = "https://www.lenouvelliste.com" + container.find("a")["href"]
 
                 # print(f"image = {image}")
@@ -83,7 +86,7 @@ class LeNouvelliste():
                 # print(f"link = {link}")
 
 
-                article = Article(image, title, overview, link)
+                article = Article(image, title, overview, link, date)
                 self.articles.append(article)
             except:
                 continue
