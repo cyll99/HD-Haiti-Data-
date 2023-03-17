@@ -21,7 +21,9 @@ def result():
     """
   
 
-
+    ocha = Ocha(ocha_link)
+    amerigeoos = Amerigeoos(amerigeoos_link)
+    
     if request.method == "POST":
         # getting input_key in HTML form
         input_key = request.form.get("search")
@@ -29,8 +31,8 @@ def result():
         ocha = Ocha(ocha_link + f"+{input_key}")
         amerigeoos = Amerigeoos(amerigeoos_link + f"+{input_key}")
 
-        return render_template("index.html", ocha = ocha.datasets, amerigeoos = amerigeoos.datasets)
-    return render_template("index.html", ocha = ocha.datasets, amerigeoos = amerigeoos.datasets)
+        return render_template("index.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
+    return render_template("index.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
 
 
 @app.route('/news',  methods =["GET", "POST"])
