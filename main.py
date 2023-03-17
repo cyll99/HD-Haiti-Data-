@@ -66,12 +66,18 @@ def home():
     Returns the rate exchange, some articles and datasets for the home page
     """
 
-    exchange_rate = Exchange_rate()
+    # exchange_rate = Exchange_rate()
     front_news = HaitiLibre()
     weather = Weather()
 
+    if request.method == "POST":
+        # getting input_key in HTML form
+        city = request.form.get("search")
+        weather = Weather(city)
+
+        return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
     
-    return render_template("home.html", ameri = amerigeoos.datasets, rate = exchange_rate, articles = front_news.articles, weather = weather)
+    return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
 
 if __name__ == '__main__':
     app.run(debug = True)

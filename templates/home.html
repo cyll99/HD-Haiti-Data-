@@ -122,8 +122,8 @@
           <div class="cardCol col-lg-4 col-md-6">
             <div class="card">
               <div class="card-body">
-                <h3 class="card-heading">{{ ameri[0].title }}</h3>
-                <p>{{ ameri[0].overview }}</p>
+                <h3 class="card-heading">{{ ameri[10].title }}</h3>
+                <p>{{ ameri[10].overview }}</p>
               </div>
             </div>
           </div>
@@ -132,8 +132,8 @@
           <div class="cardCol col-lg-4 col-md-6">
             <div class="card">
               <div class="card-body">
-                <h3 class="card-heading">{{ ameri[1].title }}</h3>
-                <p>{{ ameri[1].overview }}</p>
+                <h3 class="card-heading">{{ ameri[11].title }}</h3>
+                <p>{{ ameri[11].overview }}</p>
                
               </div>
             </div>
@@ -145,8 +145,8 @@
   
   
               <div class="card-body">
-                <h3 class="card-heading">{{ ameri[2].title }}</h3>
-                <p>{{ ameri[2].overview }}</p>
+                <h3 class="card-heading">{{ ameri[12].title }}</h3>
+                <p>{{ ameri[12].overview }}</p>
               </div>
             </div>
           </div>
@@ -173,8 +173,8 @@
               <h3 class="mb-4 pb-2 fw-normal">Check the weather forecast</h3>
       
               <div class="container">
-                <form class="d-flex" role="search">
-                  <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search" action="{{ url_for("home")}}" method="post">
+                  <input class="form-control w-100" type="search" placeholder="Search" name="search" aria-label="Search">
                   <button class="btn btn-outline-primary w-25" type="submit" id="search">Search</button>
                 </form>
               </div>
@@ -189,7 +189,7 @@
                   <p>Humidity: <strong>{{ weather.humidity }}%</strong></p>
                   <p>Visibility: <strong>{{ weather.visibility }} Km</strong></p>
                   <p>Wind: <strong>{{ weather.wind_speed }} m/s</strong></p>
-                  <p>Max: <strong>6.11°C</strong>, Min: <strong>3.89°C</strong></p>
+                  <!-- <p>Max: <strong>6.11°C</strong>, Min: <strong>3.89°C</strong></p> -->
       
                 </div>
               </div>
@@ -217,37 +217,3 @@
 </body>
 </html>
 
-<!-- <a class="active" href="{{ url_for("weather_info")}}">Weather</a> -->
-<!-- 
-<ul>
-    <li>1 USD = {{ rate.USD }} GHT</li>
-    <li>1 EUR = {{ rate.EUR }} GHT</li>
-    <li>1 PES = {{ rate.PES }} GHT</li>
-    <li>1 CAN = {{ rate.CAN }} GHT</li>
-</ul>
-
-<table>
-    {% for i in range (3) %}
-
- 
-             <th> <img src= {{ articles[i].image }}> </th>
-             <td><a href= {{ articles[i].link }}  target="_blank"> {{ articles[i].title }} </a></td>
-             <td> {{ articles[i].overview }}</td>
-          </tr>
-       {% endfor %}
-</table>
-
-<ul>
-    <li><img src= {{ weather.icon }}></li>
-    <li>City = {{ weather.city }}</li>
-    <li>Coord = {{ weather.coord }}</li>
-    <li>Weather = {{ weather.weather }}</li>
-    <li>Temp Celcius = {{ weather.temp_C }}°C</li>
-    <li>Pressure = {{ weather.pressure }} hPa</li>
-    <li>Humidity = {{ weather.humidity }}%</li>
-    <li>Sea Level = {{ weather.sea_level }} m</li>
-    <li>Ground Level = {{ weather.grnd_level }} m</li>
-    <li>Visibility  = {{ weather.visibility }} Km</li>
-    <li>Speed Wind = {{ weather.wind_speed }} m/s</li>
-
-</ul> -->
