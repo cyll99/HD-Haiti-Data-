@@ -44,7 +44,6 @@ def news():
     """
     front_news = HaitiLibre()
     nouvelliste = LeNouvelliste()
-    # loop = HaitiLoop()
 
     return render_template("news.html", articles = (front_news.articles + nouvelliste.articles))
 
@@ -79,6 +78,7 @@ def home():
         city = request.form.get("search")
         weather = Weather(city)
 
+        #format result like a dictionary
         result = {'city': weather.city,
                    'temp_C': weather.temp_C, 
                    'pressure': weather.pressure,
@@ -88,7 +88,6 @@ def home():
                    }
         return json.dumps(result)
 
-        # return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
     
     return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather, index = index)
 

@@ -11,6 +11,10 @@ class Article():
         self.date = date
 
 
+
+"""
+This class processes news from HaitiLibre website.
+"""
 class HaitiLibre():
     def __init__(self):
 
@@ -50,6 +54,9 @@ class HaitiLibre():
 
 
 
+"""
+This class processes news from Le Nouvelliste website.
+"""
 class LeNouvelliste():
     def __init__(self):
 
@@ -89,43 +96,6 @@ class LeNouvelliste():
 
 
                 article = Article(image, title, overview, link, date)
-                self.articles.append(article)
-            except:
-                continue
-
-
-class HaitiLoop():
-    def __init__(self):
-
-        HEADERS = ({'User-Agent':
-            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
-            'Accept-Language': 'en-US'})
-        
-        page_url = "https://haiti.loopnews.com/category/loophaiti-actualit%C3%A9s"
-
-                  # opens the connection and downloads html page from url
-        try:
-            webpage = requests.get(page_url, headers=HEADERS)
-        except:
-            print("Connection failed")
-            return
-
-        # parses html into a soup data structure to traverse html
-        # as if it were a json data type.
-        soup = BeautifulSoup(webpage.content, "lxml")
-
-                # finds news from home page
-        containers = soup.findAll("div", {"class": "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12"})
-        self.articles = []
-        for container in containers:
-            try:
-                image = container.find("img")["src"].strip()
-                title = container.findAll("a")[1].text
-                overview = ""
-                link = "https://haiti.loopnews.com" + container.find("a")["href"]
-
-
-                article = Article(image, title, overview, link)
                 self.articles.append(article)
             except:
                 continue
