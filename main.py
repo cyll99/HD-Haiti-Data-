@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template, request
 from change_weather import Exchange_rate, Weather
 from news import *
@@ -77,7 +78,16 @@ def home():
         city = request.form.get("search")
         weather = Weather(city)
 
-        return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
+        result = {'city': weather.city,
+                   'temp_C': weather.temp_C, 
+                   'pressure': weather.pressure,
+                   'humidity': weather.humidity,
+                   'visibility': weather.visibility,
+                   'wind_speed': weather.wind_speed                
+                   }
+        return json.dumps(result)
+
+        # return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
     
     return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
 

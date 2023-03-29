@@ -117,7 +117,7 @@
               <h3 class="mb-4 pb-2 fw-normal">Check the weather forecast</h3>
       
               <div class="container">
-                <form class="d-flex" role="search" action="{{ url_for("home")}}" method="post">
+                <form id="my-form"class="d-flex" role="search" action="{{ url_for("home")}}" method="post">
                   <input class="form-control w-100" type="search" placeholder="Search" name="search" aria-label="Search">
                   <button class="btn btn-outline-primary w-25" type="submit" id="search">Search</button>
                 </form>
@@ -125,7 +125,7 @@
               <br>
       
               <div class="card shadow-0 border">
-                <div class="card-body ">
+                <div class="card-body" id="result">
       
                   <h4 class="mb-1 sfw-normal">{{ weather.city }}</h4>
                   <p class="mb-2">Current temperature: <strong>{{ weather.temp_C }}°C</strong></p>
@@ -146,6 +146,27 @@
 
     </section>
 
+    <script>
+      // handle form submission
+      document.getElementById('my-form').addEventListener('submit', function(event) {
+          event.preventDefault();
+          var form_data = new FormData(this);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', "{{ url_for('home') }}", true);
+          xhr.onload = function() {
+              if (this.status == 200) {
+                  var result = JSON.parse(this.response);
+                  document.getElementById('result').innerHTML = result.city + '<p>' +
+                    'Current temperature: ' + result.temp_C +'°C'+  '<p>' +
+                      'Pressure: ' + result.pressure + 'hPa'+ '<p>' +
+                        'Humidity: ' + result.humidity + '%'+'<p>' +
+                          'Visibility: ' + result.visibility + 'Km'+ '<p>' +
+                            'Wind: ' + result.wind_speed+ 'm/s' + '<p>' ;
+              }
+          };
+          xhr.send(form_data);
+      });
+  </script>
   
 
     {% endblock %}
