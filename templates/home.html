@@ -66,8 +66,8 @@
           <div class="cardCol col-lg-4 col-md-6">
             <div class="card">
               <div class="card-body">
-                <h3 class="card-heading">{{ ameri[10].title }}</h3>
-                <p>{{ ameri[10].overview }}</p>
+                <h3 class="card-heading">{{ ameri[index[0]].title }}</h3>
+                <p>{{ ameri[index[0]].overview }}</p>
               </div>
             </div>
           </div>
@@ -76,8 +76,8 @@
           <div class="cardCol col-lg-4 col-md-6">
             <div class="card">
               <div class="card-body">
-                <h3 class="card-heading">{{ ameri[11].title }}</h3>
-                <p>{{ ameri[11].overview }}</p>
+                <h3 class="card-heading">{{ ameri[index[1]].title }}</h3>
+                <p>{{ ameri[index[1]].overview }}</p>
                
               </div>
             </div>
@@ -89,8 +89,8 @@
   
   
               <div class="card-body">
-                <h3 class="card-heading">{{ ameri[12].title }}</h3>
-                <p>{{ ameri[12].overview }}</p>
+                <h3 class="card-heading">{{ ameri[index[2]].title }}</h3>
+                <p>{{ ameri[index[2]].overview }}</p>
               </div>
             </div>
           </div>
@@ -159,9 +159,9 @@
                   document.getElementById('result').innerHTML ='<h4 class="mb-1 sfw-normal">'+ result.city + '</h4>' +
                     '<p class="mb-2">' + 'Current temperature:'+ '<strong>'+  result.temp_C +'°C'+  '</strong>'+'</p>' +
                     '<p>' + 'Pressure: ' + '<strong>'+ result.pressure + 'hPa'+ '</strong>'+'</p>' +
-                    '<p>' + 'Humidity:' +'<strong>'+ result.humidity + '%'+ '</strong>'+'</p>' +
+                    '<p>' + 'Humidity: ' +'<strong>'+ result.humidity + '%'+ '</strong>'+'</p>' +
                     '<p>' + 'Visibility: ' + '<strong>'+ result.visibility + 'Km'+  '</strong>'+'</p>' +
-                    '<p>' + 'Wind:' + '<strong>'+ result.wind_speed+ 'm/s' + '</strong>'+ '</p>' ;
+                    '<p>' + 'Wind: ' + '<strong>'+ result.wind_speed+ 'm/s' + '</strong>'+ '</p>' ;
               }
           };
           xhr.send(form_data);
