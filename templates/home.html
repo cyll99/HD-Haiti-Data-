@@ -156,12 +156,12 @@
           xhr.onload = function() {
               if (this.status == 200) {
                   var result = JSON.parse(this.response);
-                  document.getElementById('result').innerHTML = result.city + '<p>' +
-                    'Current temperature: ' + result.temp_C +'°C'+  '<p>' +
-                      'Pressure: ' + result.pressure + 'hPa'+ '<p>' +
-                        'Humidity: ' + result.humidity + '%'+'<p>' +
-                          'Visibility: ' + result.visibility + 'Km'+ '<p>' +
-                            'Wind: ' + result.wind_speed+ 'm/s' + '<p>' ;
+                  document.getElementById('result').innerHTML ='<h4 class="mb-1 sfw-normal">'+ result.city + '</h4>' +
+                    '<p class="mb-2">' + 'Current temperature:'+ '<strong>'+  result.temp_C +'°C'+  '</strong>'+'</p>' +
+                    '<p>' + 'Pressure: ' + '<strong>'+ result.pressure + 'hPa'+ '</strong>'+'</p>' +
+                    '<p>' + 'Humidity:' +'<strong>'+ result.humidity + '%'+ '</strong>'+'</p>' +
+                    '<p>' + 'Visibility: ' + '<strong>'+ result.visibility + 'Km'+  '</strong>'+'</p>' +
+                    '<p>' + 'Wind:' + '<strong>'+ result.wind_speed+ 'm/s' + '</strong>'+ '</p>' ;
               }
           };
           xhr.send(form_data);
