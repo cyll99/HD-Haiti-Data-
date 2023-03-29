@@ -1,4 +1,5 @@
 import json
+import random
 from flask import Flask, render_template, request
 from change_weather import Exchange_rate, Weather
 from news import *
@@ -68,7 +69,7 @@ def home():
     """
     Returns the rate exchange, some articles and datasets for the home page
     """
-
+    index = [random.randint(1, 30) for _ in range(3)] #to display random dataset in the home page
     # exchange_rate = Exchange_rate()
     front_news = HaitiLibre()
     weather = Weather()
@@ -89,7 +90,7 @@ def home():
 
         # return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
     
-    return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather)
+    return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather, index = index)
 
 if __name__ == '__main__':
     app.run(debug = True)
