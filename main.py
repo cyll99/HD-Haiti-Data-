@@ -33,8 +33,8 @@ def result():
         ocha = Ocha(ocha_link + f"+{input_key}")
         amerigeoos = Amerigeoos(amerigeoos_link + f"+{input_key}")
 
-        return render_template("index.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
-    return render_template("index.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
+        return render_template("datasets.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
+    return render_template("datasets.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
 
 
 @app.route('/news',  methods =["GET", "POST"])
@@ -47,19 +47,7 @@ def news():
 
     return render_template("news.html", articles = (front_news.articles + nouvelliste.articles))
 
-@app.route('/weather',  methods =["GET", "POST"])
-def weather_info():
-    """
-    returns the weather of a specific city (Port-au-Prince by default)
-    """
-    weather = Weather()
-    if request.method == "POST":
-        # getting input_key in HTML form
-        city = request.form.get("search")
-        weather = Weather(city)
 
-        return render_template("weather.html", weather = weather)
-    return render_template("weather.html", weather = weather)
 
 
 
