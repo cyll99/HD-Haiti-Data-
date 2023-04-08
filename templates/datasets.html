@@ -1,49 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>HD - Haiti Data</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+{% extends 'base.html' %}
 
-
-</head>
-<body>
-	<h1>Take a quick glance at the price of the item you want to buy!</h1>
-	<div class="topnav">
-	   <a class="active" href="{{ url_for("home")}}">Home</a>
-	   <div class="search-container">
-		  <form action="{{ url_for("result")}}" method="post">
-		  <input type="text" placeholder="Search.." name="search">
-		  <button type="submit" onclick="$('#loading').show();">Submit</button>
-		  </form>
-		  <a class="active" href="{{ url_for("news")}}">Haiti News</a>
-	   </div>
-	   <div id="loading" style="display:none;">Loading...</div>
-<!-- partial:index.partial.html -->
-<ul class="tilesWrap">
-	{% for dataset in ochas %}
-		<li>
-			<h2>HD</h2>
-			<h3>{{ dataset.title }}</h3>
-			<p>
-				{{ dataset.overview }}.
-			</p>
-			<a href= {{ dataset.link }}  target="_blank"><button>See More</button></a>
-		</li>
-	{% endfor %}
-	{% for dataset in amerigo %}
-		<li>
-			<h2>HD</h2>
-			<h3>{{ dataset.title }}</h3>
-			<p>
-				{{ dataset.overview  }}.
-			</p>
-			<a href= {{ dataset.link }}  target="_blank"><button>See More</button></a>
-		</li>
-	{% endfor %}
-</ul>
-<!-- partial -->
+{% block content %}
   
-</body>
-</html>
+
+     <!-- heading Text -->
+
+     <div class="row">
+      <div class="col-lg-12">
+        <h1 class="big-heading">Datasets</h1>
+      
+      </div>
+
+  </section>
+
+  <div class="container search-dataset">
+    <form class="d-flex" role="search" action="{{ url_for("result)}}" method="post">
+      <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-primary w-25" type="submit" id="search">Search</button>
+    </form>
+  </div>
+  <!-- Datasets feed -->
+<section>
+  {% for dataset in ochas %}
+  
+  <a href= {{ dataset.link }}  target="_blank"div class="card">
+        
+    <div class="card-content">
+      <h2>{{ dataset.title }}</h2>
+      <p>{{ dataset.overview }}.</p>
+      <div class="card-meta">
+
+        <span class="date">Date</span>
+      </div>
+    </div>
+  </div>
+  </a>
+  {% endfor %}
+
+   {% for dataset in amerigo %}
+  
+  <a href= {{ dataset.link }}  target="_blank"div class="card">
+        
+    <div class="card-content">
+      <h2>{{ dataset.title }}</h2>
+      <p>{{ dataset.overview }}.</p>
+      <div class="card-meta">
+
+        <span class="date">Date</span>
+      </div>
+    </div>
+  </div>
+  </a>
+  {% endfor %}
+</section>
+ 
+
+
+
+{% endblock %}
