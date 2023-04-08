@@ -21,7 +21,7 @@
   </div>
   <!-- Datasets feed -->
 <section>
-  {% for dataset in ochas %}
+  {% for dataset in datasets %}
   
   <a href= {{ dataset.link }}  target="_blank"div class="card">
         
@@ -37,21 +37,7 @@
   </a>
   {% endfor %}
 
-   {% for dataset in amerigo %}
   
-  <a href= {{ dataset.link }}  target="_blank"div class="card">
-        
-    <div class="card-content">
-      <h2>{{ dataset.title }}</h2>
-      <p>{{ dataset.overview }}.</p>
-      <div class="card-meta">
-
-        <span class="date">Date</span>
-      </div>
-    </div>
-  </div>
-  </a>
-  {% endfor %}
 </section>
  
 

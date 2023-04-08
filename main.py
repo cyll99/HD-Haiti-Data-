@@ -1,7 +1,7 @@
 import json
 import random
 from flask import Flask, render_template, request
-from change_weather import Exchange_rate, Weather
+from change_weather import Weather
 from news import *
 from dataset import Ocha, Amerigeoos
 
@@ -33,8 +33,8 @@ def result():
         ocha = Ocha(ocha_link + f"+{input_key}")
         amerigeoos = Amerigeoos(amerigeoos_link + f"+{input_key}")
 
-        return render_template("datasets.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
-    return render_template("datasets.html", ochas = ocha.datasets, ameri = amerigeoos.datasets)
+        return render_template("datasets.html", datasets = (ocha.datasets + amerigeoos.datasets))
+    return render_template("datasets.html", datasets = (ocha.datasets + amerigeoos.datasets))
 
 
 @app.route('/news',  methods =["GET", "POST"])
