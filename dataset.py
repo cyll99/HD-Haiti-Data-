@@ -3,10 +3,11 @@ from urllib.request import urlopen as uReq  # Web client
 import requests
 
 class Dataset():
-    def __init__(self, title, overview, link) :
+    def __init__(self, title, overview, link, date) :
         self.title = title
         self.overview = overview
         self.link = link
+        self.date = date
 
 
 """
@@ -19,7 +20,7 @@ class Ocha:
         page_url = self.link + "&page="
 
         # Scraping five pages
-        for i in range(1, 3):
+        for i in range(1, 5):
             page_url_complete = page_url + str(i)   
 
             # opens the connection and downloads html page from url
@@ -40,9 +41,14 @@ class Ocha:
             for container in containers:
                 title = container.a.text
                 link = "https://data.humdata.org"+container.a["href"]
-                info = container.findAll("div", {"class" : "dataset-dates"})
-                overview = info[0].text.strip().replace('\n', '').replace("\t", "")
-                dataset = Dataset(title, overview, link)
+
+                date = container.findAll("div", {"class" : "dataset-dates"})
+                date = date[0].text.strip().replace('\n', '').replace("\t", "")
+
+                overview = container.findAll("span", {"class" : "download-counts"})
+                overview = overview[0].text.strip().replace('\n', '').replace("\t", "")
+
+                dataset = Dataset(title, overview, link, date)
                 self.datasets.append(dataset)
 
 
@@ -57,7 +63,7 @@ class Amerigeoos:
 
 
         # Scraping five pages
-        for i in range(1, 3):
+        for i in range(1, 5):
             page_url = self.link + "&page=" + str(i) 
             
             # opens the connection and downloads html page from url
@@ -80,7 +86,7 @@ class Amerigeoos:
                     title = container.a.text
                     overview = container.div.div.text
 
-                    dataset = Dataset(title, overview, link)
+                    dataset = Dataset(title, overview, link, "No date")
                     self.datasets.append(dataset)
                 except:
                     print()
