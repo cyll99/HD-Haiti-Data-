@@ -32,9 +32,12 @@ def result():
 
         ocha = Ocha(ocha_link + f"+{input_key}")
         amerigeoos = Amerigeoos(amerigeoos_link + f"+{input_key}")
-
-        return render_template("datasets.html", datasets = (amerigeoos.datasets + ocha.datasets))
-    return render_template("datasets.html", datasets = (amerigeoos.datasets + ocha.datasets))
+        data = (amerigeoos.datasets + ocha.datasets)
+        random.shuffle(data)
+        return render_template("datasets.html", datasets = data)
+    data = (amerigeoos.datasets + ocha.datasets)
+    random.shuffle(data)
+    return render_template("datasets.html", datasets = data)
 
 
 @app.route('/news',  methods =["GET", "POST"])
