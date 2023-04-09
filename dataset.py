@@ -1,13 +1,13 @@
+from bs4 import BeautifulSoup as soup  # HTML data structure
+from urllib.request import urlopen as uReq  # Web client
+import requests
+
 class Dataset():
     def __init__(self, title, overview, link) :
         self.title = title
         self.overview = overview
         self.link = link
 
-
-from bs4 import BeautifulSoup as soup  # HTML data structure
-from urllib.request import urlopen as uReq  # Web client
-import requests
 
 """
 This class processes data from Ocha website.
