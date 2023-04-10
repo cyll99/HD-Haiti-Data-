@@ -101,7 +101,7 @@ p {
   margin: 25px auto;
 }
 
-.card {
+.card_datasets {
   display: flex;
   margin-bottom: 20px;
   border: 1px solid #ccc;
@@ -113,8 +113,8 @@ p {
   margin-right: auto;
   border: 0.1px solid #696969;
 }
-.card h2,
-.card p {
+.card_datasets h2,
+.card_datasets p {
   text-align: left;
 }
 
@@ -149,4 +149,4 @@ p {
 
 .card-meta span {
   margin-right: 10px;
-}
+} 
