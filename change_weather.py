@@ -7,7 +7,9 @@ import requests
 x = datetime.datetime.now()
 
 date = x.strftime("%A, %B %d %Y")
-
+"""
+This class handles the exchange rate of the Hatian Currency
+"""
 class Exchange_rate():
     def __init__(self):
 
