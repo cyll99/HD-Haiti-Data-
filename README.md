@@ -13,6 +13,8 @@ HDH is a web application that provides users with access to news articles and da
 ## Weather
 - [x] The application provides the user with the weather forecast for Port-au-Prince at the bottom of the homepage.
 - [x] Users can enter the name of any city to obtain the weather forecast for that location.
+
+
 ## Usage
 To use the application, first install the dependencies by executing the following command:"pip install -r requirements.txt" on your terminal, then run the main file.
 
