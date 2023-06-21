@@ -16,7 +16,7 @@ HDH is a web application that provides users with access to news articles and da
 
 
 ## Usage
-To use the application, first install the dependencies by executing the following command:"pip install -r requirements.txt" on your terminal, then run the main file.
+To use the application, first install the dependencies by executing the following command:"pip install -r requirements.txt" on your terminal, then run the main file. Once the main file is running, the URL will be displayed in the terminal. Click on it to access the website.
 
 
 ## Credits

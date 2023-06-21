@@ -78,7 +78,7 @@ class Weather():
                 self.humidity = data["main"]["humidity"]
                 self.sea_level = data["main"]["sea_level"]
                 self.grnd_level = data["main"]["grnd_level"]
-                self.visibility = (data["visibility"]) / 1000
+                self.visibility = data["visibility"] / 1000
                 self.wind_speed = data["wind"]["speed"]
                 self.icon = "http://openweathermap.org/img/wn/" + data["weather"][0]["icon"] + "@2x.png"
      

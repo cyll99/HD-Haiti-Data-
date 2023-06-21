@@ -73,9 +73,9 @@ def home():
         result = {'city': weather.city,
                    'temp_C': weather.temp_C, 
                    'pressure': weather.pressure,
-                   'humidity': weather.humidity,
-                   'visibility': weather.visibility,
-                   'wind_speed': weather.wind_speed                
+                   'humidity': weather.humidity
+                #    'visibility': weather.visibility,
+                #    'wind_speed': weather.wind_speed                
                    }
         return json.dumps(result)
 

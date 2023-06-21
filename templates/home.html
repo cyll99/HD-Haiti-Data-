@@ -131,8 +131,8 @@
                   <p class="mb-2">Current temperature: <strong>{{ weather.temp_C }}°C</strong></p>
                   <p>Pressure: <strong>{{ weather.pressure }} hPa</strong></p>
                   <p>Humidity: <strong>{{ weather.humidity }}%</strong></p>
-                  <p>Visibility: <strong>{{ weather.visibility }} Km</strong></p>
-                  <p>Wind: <strong>{{ weather.wind_speed }} m/s</strong></p>
+                  <!-- <p>Visibility: <strong>{{ weather.visibility }} Km</strong></p> -->
+                  <!-- <p>Wind: <strong>{{ weather.wind_speed }} m/s</strong></p> -->
                   <!-- <p>Max: <strong>6.11°C</strong>, Min: <strong>3.89°C</strong></p> -->
       
                 </div>
@@ -159,9 +159,10 @@
                   document.getElementById('result').innerHTML ='<h4 class="mb-1 sfw-normal">'+ result.city + '</h4>' +
                     '<p class="mb-2">' + 'Current temperature:'+ '<strong>'+  result.temp_C +'°C'+  '</strong>'+'</p>' +
                     '<p>' + 'Pressure: ' + '<strong>'+ result.pressure + 'hPa'+ '</strong>'+'</p>' +
-                    '<p>' + 'Humidity: ' +'<strong>'+ result.humidity + '%'+ '</strong>'+'</p>' +
-                    '<p>' + 'Visibility: ' + '<strong>'+ result.visibility + 'Km'+  '</strong>'+'</p>' +
-                    '<p>' + 'Wind: ' + '<strong>'+ result.wind_speed+ 'm/s' + '</strong>'+ '</p>' ;
+                    '<p>' + 'Humidity: ' +'<strong>'+ result.humidity + '%'+ '</strong>'+'</p>' 
+                    // '<p>' + 'Visibility: ' + '<strong>'+ result.visibility + 'Km'+  '</strong>'+'</p>' +
+                    // '<p>' + 'Wind: ' + '<strong>'+ result.wind_speed+ 'm/s' + '</strong>'+ '</p>'
+                     ;
               }
           };
           xhr.send(form_data);
