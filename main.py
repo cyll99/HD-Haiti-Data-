@@ -4,14 +4,41 @@ from flask import Flask, render_template, request
 from change_weather import Weather
 from news import *
 from dataset import Ocha, Amerigeoos
+import xml.etree.ElementTree as ET
+
 
 #links for each website
 ocha_link = "https://data.humdata.org/dataset?q=haiti"
 amerigeoos_link = "https://data.amerigeoss.org/gl/group/amerigeoss?q=haiti"
 
 
-ocha = Ocha(ocha_link)
-amerigeoos = Amerigeoos(amerigeoos_link)
+# Charger le fichier XML
+tree = ET.parse('datasets.xml')
+root = tree.getroot()
+
+# Liste pour stocker les datasets
+datasets = []
+
+# Parcourir les éléments <dataset> dans le fichier XML
+for dataset_element in root.findall('dataset'):
+    title = dataset_element.find('title').text
+    overview = dataset_element.find('overview').text
+    link = dataset_element.find('link').text
+    date = dataset_element.find('date').text
+    
+    # Créer un dictionnaire pour stocker les informations du dataset
+    dataset_info = {
+        'title': title,
+        'overview': overview,
+        'link': link,
+        'date': date
+    }
+    
+    # Ajouter le dictionnaire à la liste des datasets
+    datasets.append(dataset_info)
+
+
+
 
 
 app = Flask(__name__)
@@ -37,7 +64,7 @@ def result():
         return render_template("datasets.html", datasets = data)
     data = (amerigeoos.datasets + ocha.datasets)
     random.shuffle(data)
-    return render_template("datasets.html", datasets = data)
+    return render_template("datasets.html", datasets = datasets)
 
 
 @app.route('/news',  methods =["GET", "POST"])
@@ -80,7 +107,7 @@ def home():
         return json.dumps(result)
 
     
-    return render_template("home.html", ameri = amerigeoos.datasets, articles = front_news.articles, weather = weather, index = index)
+    return render_template("home.html", ameri = datasets, articles = front_news.articles, weather = weather, index = index)
 
 if __name__ == '__main__':
     app.run(debug = True)

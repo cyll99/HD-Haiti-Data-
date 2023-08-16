@@ -1,6 +1,10 @@
 from bs4 import BeautifulSoup as soup  # HTML data structure
 from urllib.request import urlopen as uReq  # Web client
 import requests
+import xml.etree.ElementTree as ET
+
+ocha_link = "https://data.humdata.org/dataset?q=haiti"
+amerigeoos_link = "https://data.amerigeoss.org/gl/group/amerigeoss?q=haiti"
 
 class Dataset():
     def __init__(self, title, overview, link, date) :
@@ -91,3 +95,34 @@ class Amerigeoos:
                 except:
                     print()
         
+a = Amerigeoos(amerigeoos_link)
+o = Ocha(ocha_link)
+
+datasets = a.datasets + o.datasets
+
+# Supposons que vous avez une liste 'datasets' contenant les informations des datasets
+
+# Créer un élément racine pour le fichier XML
+root = ET.Element("datasets")
+
+# Parcourir les informations des datasets et les ajouter à l'élément racine
+for dataset in datasets:
+    dataset_element = ET.SubElement(root, "dataset")
+    
+    title_element = ET.SubElement(dataset_element, "title")
+    title_element.text = dataset.title
+    
+    overview_element = ET.SubElement(dataset_element, "overview")
+    overview_element.text = dataset.overview
+    
+    link_element = ET.SubElement(dataset_element, "link")
+    link_element.text = dataset.link
+    
+    date_element = ET.SubElement(dataset_element, "date")
+    date_element.text = dataset.date
+
+# Créer un objet ElementTree avec l'élément racine
+tree = ET.ElementTree(root)
+
+# Enregistrer l'arborescence XML dans un fichier
+tree.write("datasets.xml", encoding="utf-8", xml_declaration=True)
