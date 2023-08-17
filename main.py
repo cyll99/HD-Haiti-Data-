@@ -50,10 +50,11 @@ def result():
     """
   
 
-    ocha = Ocha(ocha_link)
-    amerigeoos = Amerigeoos(amerigeoos_link)
+
 
     if request.method == "POST":
+        ocha = Ocha(ocha_link)
+        amerigeoos = Amerigeoos(amerigeoos_link)
         # getting input_key in HTML form
         input_key = request.form.get("search")
 
@@ -62,8 +63,6 @@ def result():
         data = (amerigeoos.datasets + ocha.datasets)
         random.shuffle(data)
         return render_template("datasets.html", datasets = data)
-    data = (amerigeoos.datasets + ocha.datasets)
-    random.shuffle(data)
     return render_template("datasets.html", datasets = datasets)
 
 
@@ -75,7 +74,7 @@ def news():
     front_news = HaitiLibre()
     nouvelliste = LeNouvelliste()
 
-    return render_template("news.html", articles = (front_news.articles + nouvelliste.articles))
+    return render_template("news.html", articles = front_news.articles)
 
 
 
