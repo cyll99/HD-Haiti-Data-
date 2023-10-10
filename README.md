@@ -1,5 +1,5 @@
 # HDH (Haiti Data Hub)
-HDH is a web application that provides users with access to news articles and datasets related to Haiti. The application includes the following features:
+HDH is a web application that provides users with access to news articles and datasets related to Haiti using web scraping. The application includes the following features:
 
 ## News
 - [x] Users can access the three latest news articles on the homepage.
